@@ -1,4 +1,4 @@
-package com.ohadr.utils;
+package com.ohadr.common.utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

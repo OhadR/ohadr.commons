@@ -1,4 +1,4 @@
-package com.ohadr.commons.types;
+package com.ohadr.common.types.c3p0;
 
 public class ConnectionPoolStatus
 {
