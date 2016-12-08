@@ -34,7 +34,7 @@ public class JsonUtils
             log.error("error converting " + objectToConvert.getClass().getSimpleName() + " to JSON");
         }
 
-        log.debug("convertToJson() result: " + json);
+        log.trace("convertToJson() result: " + json);
         return json;
     }
 
@@ -43,6 +43,8 @@ public class JsonUtils
 	{
 	    ObjectMapper mapper = new ObjectMapper();
 	    
+		log.trace("received json: " + json);
+
 	    T t = null;
 		try
 		{
