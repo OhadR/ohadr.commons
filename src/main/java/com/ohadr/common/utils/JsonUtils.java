@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
-public class JsonUtils
+public abstract class JsonUtils
 {
 	private static Logger log = Logger.getLogger(JsonUtils.class);
 
