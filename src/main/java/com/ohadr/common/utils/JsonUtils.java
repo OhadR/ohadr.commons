@@ -85,14 +85,7 @@ public abstract class JsonUtils
 			for (int i = 1; i <= numColumns; ++i) 			//iterate columns
 			{
 				String column_name = metadata.getColumnName(i);
-		        if(metadata.getColumnType(i)==java.sql.Types.TIMESTAMP)
-		        {
-		            obj.put(column_name, resultSet.getTimestamp(column_name));   
-		        }
-		        else
-		        {
-					obj.put(column_name, resultSet.getObject(column_name));
-		        }
+				obj.put(column_name, resultSet.getObject(column_name));
 			}
 			json.add(obj);
 		}
