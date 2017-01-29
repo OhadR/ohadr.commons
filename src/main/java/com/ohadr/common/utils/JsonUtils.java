@@ -75,6 +75,9 @@ public abstract class JsonUtils
 	@SuppressWarnings("unchecked")		//we use 3rd-party non-type-safe types...
 	public static String convertResultSetToJson(ResultSet resultSet) throws SQLException
 	{
+		if(resultSet == null)
+			return null;
+		
 		JSONArray json = new JSONArray();
 		ResultSetMetaData metadata = resultSet.getMetaData();
 		int numColumns = metadata.getColumnCount();
