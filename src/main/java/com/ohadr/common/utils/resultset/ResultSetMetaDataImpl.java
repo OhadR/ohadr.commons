@@ -2,7 +2,6 @@ package com.ohadr.common.utils.resultset;
 
 import java.sql.SQLException;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Set;
 
 public class ResultSetMetaDataImpl extends AbstractResultSetMetaData
