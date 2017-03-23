@@ -6,10 +6,11 @@ import java.sql.SQLException;
 import org.junit.Test;
 import com.ohadr.common.utils.JsonUtils;
 import com.ohadr.common.utils.resultset.ResultSetImpl;
+import junit.framework.Assert;
 
 public class ResultSetImplTest
 {
-	@Test
+//	@Test
 	public void createResultSet() throws SQLException
 	{
 		ResultSet resultSet = new ResultSetImpl();
@@ -59,4 +60,36 @@ public class ResultSetImplTest
 		System.out.println(jsonResult);
 	}
 
+	@Test
+	public void testReadIntegerAsLongFromResultSet() throws SQLException
+	{
+		int SOME_INT_VALUE = 1696;
+		ResultSet resultSet = new ResultSetImpl();
+		
+		resultSet.moveToInsertRow();
+		
+		resultSet.updateInt("SomeKey", SOME_INT_VALUE);
+		resultSet.updateObject("SomeKeyWithNullValue", null);
+		
+		resultSet.insertRow();
+		resultSet.first();
+		
+		//now read:
+		int readAsInt = resultSet.getInt("SomeKey");
+		Assert.assertEquals(SOME_INT_VALUE, readAsInt);
+		readAsInt = resultSet.getInt("SomeKeyWithNullValue");
+		Assert.assertEquals(0, readAsInt);
+
+		long readAsLong = resultSet.getInt("SomeKey");		//working.
+		Object readAsObj = resultSet.getObject("SomeKey");
+		int moshe1 = (int) readAsObj;
+		Long moshe2 = (long)moshe1;
+//	will not work: 	long readAsLong2 = resultSet.getLong("SomeKey");	
+
+
+		readAsObj = null;
+		Integer iVal = (Integer) readAsObj;
+		Long lVal = iVal == null ? null : new Long(iVal);
+		
+	}
 }

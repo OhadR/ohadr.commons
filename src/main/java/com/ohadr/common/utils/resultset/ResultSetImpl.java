@@ -46,7 +46,11 @@ public class ResultSetImpl extends AbstractResultSet
 		currentRow.put(columnLabel, x);
 	}
 	
-	
+	@Override
+	public void updateObject(String columnLabel, Object x) throws SQLException
+	{
+		currentRow.put(columnLabel, x);
+	}
 	
 	
 	@Override
@@ -60,9 +64,16 @@ public class ResultSetImpl extends AbstractResultSet
 	public int getInt(String columnLabel) throws SQLException
 	{
 		Object obj = currentRow.get(columnLabel);
-		return (obj != null) ? (int) obj : null;
+		return (obj != null) ? (int) obj : 0;		//according to the specs, if value is null we should return 0.
 	}
 
+	@Override
+	public long getLong(String columnLabel) throws SQLException
+	{
+		Object obj = currentRow.get(columnLabel);
+		return (obj != null) ? (long) obj : 0;		//according to the specs, if value is null we should return 0.
+	}
+	
 	@Override
 	public Date getDate(String columnLabel) throws SQLException
 	{
