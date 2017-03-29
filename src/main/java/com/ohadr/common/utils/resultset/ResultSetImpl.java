@@ -12,7 +12,7 @@ import java.util.Map;
 public class ResultSetImpl extends AbstractResultSet
 {
 	private List<Map<String, Object>> rows 	= new ArrayList<Map<String, Object>>();
-	private Map<String, Object> currentRow;
+	protected Map<String, Object> currentRow;
 	private int currentRowIndex = 0;			//result set contains several rows; this is the index of the current row (starts from 1, not 0: this is ResultSet standard)
 	
 	
