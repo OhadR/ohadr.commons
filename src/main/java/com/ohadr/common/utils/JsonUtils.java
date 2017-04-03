@@ -69,7 +69,7 @@ public abstract class JsonUtils
 	 * The following code converts a ResultSet to a JSON string using JSONArray and JSONObject.
 	 * http://stackoverflow.com/questions/6514876/most-efficient-conversion-of-resultset-to-json
 	 * @param resultSet
-	 * @return
+	 * @return JSON-String representation of the given ResultSet
 	 * @throws SQLException
 	 */
 	@SuppressWarnings("unchecked")		//we use 3rd-party non-type-safe types...
