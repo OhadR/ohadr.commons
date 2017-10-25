@@ -62,7 +62,7 @@ public class ResultSetConvertersTest
 		resultSet.first();
 
 		
-		String fileName = "c:/ohad/dev/tmp/RESULTS_FILE_NAME.txt";
+		String fileName = "/ohad/dev/tmp/RESULTS_FILE_NAME.txt";
 		File file = new File(fileName);
 		// clean if already exist
 		Files.deleteIfExists(file.toPath());
