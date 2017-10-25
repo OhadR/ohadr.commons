@@ -1,9 +1,7 @@
 package com.ohadr.common.utils.resultset;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.nio.file.Files;
+import java.io.IOException;
+import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -22,9 +20,10 @@ public abstract class ResultSetConverters
 	 *	PrintWriter writer = new PrintWriter(writerFile);
 	 *</pre>
 	 * @throws SQLException
+	 * @throws IOException 
 	 */
 	@SuppressWarnings("unchecked")		//we use 3rd-party non-type-safe types...
-	public static void writeResultSetToWriter(ResultSet resultSet, PrintWriter writer) throws SQLException
+	public static void writeResultSetToWriter(ResultSet resultSet, Writer writer) throws SQLException, IOException
 	{
 		if(resultSet == null || writer == null)
 			return;
@@ -42,7 +41,10 @@ public abstract class ResultSetConverters
 				String column_name = metadata.getColumnName(i);
 				obj.put(column_name, resultSet.getObject(column_name));
 			}
-			writer.println(obj.toJSONString());
+
+	        writer.write( obj.toJSONString() );
+	        writer.write( "\n" );
+
 			
 			if(numRows % 1000 == 0)
 				writer.flush();

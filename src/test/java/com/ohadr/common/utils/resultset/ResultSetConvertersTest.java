@@ -21,8 +21,6 @@ public class ResultSetConvertersTest
 		for(int i=0; i < 50; ++i)
 		{
 			Date signupDate = new Date( System.currentTimeMillis() );
-			Date lastLoginDate = new Date( System.currentTimeMillis() );
-			Date updateDate = new Date( System.currentTimeMillis() );
 			resultSet.moveToInsertRow();
 			
 			resultSet.updateString("CASINONAME", "WHPoker");
@@ -35,12 +33,12 @@ public class ResultSetConvertersTest
 		resultSet.first();
 
 		StringWriter stringWriter = new StringWriter();
-		PrintWriter writer = new PrintWriter(stringWriter);
 
-		ResultSetConverters.writeResultSetToWriter(resultSet, writer);
-		writer.close();
+		ResultSetConverters.writeResultSetToWriter(resultSet, stringWriter);
+		stringWriter.close();
 	}
 
+//	@Test
 	public void createResultSet() throws SQLException, IOException
 	{
 		ResultSet resultSet = new ResultSetImpl();
