@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -13,6 +14,33 @@ import org.junit.Test;
 public class ResultSetConvertersTest
 {
 	@Test
+	public void testcreateResultSet() throws SQLException, IOException
+	{
+		ResultSet resultSet = new ResultSetImpl();
+		
+		for(int i=0; i < 50; ++i)
+		{
+			Date signupDate = new Date( System.currentTimeMillis() );
+			Date lastLoginDate = new Date( System.currentTimeMillis() );
+			Date updateDate = new Date( System.currentTimeMillis() );
+			resultSet.moveToInsertRow();
+			
+			resultSet.updateString("CASINONAME", "WHPoker");
+			resultSet.updateDate("SIGNUPDATE", signupDate);		
+			resultSet.updateInt("Seniority", 1696);
+			resultSet.updateDouble("Balance_USD", 13.9100);
+			
+			resultSet.insertRow();
+		}
+		resultSet.first();
+
+		StringWriter stringWriter = new StringWriter();
+		PrintWriter writer = new PrintWriter(stringWriter);
+
+		ResultSetConverters.writeResultSetToWriter(resultSet, writer);
+		writer.close();
+	}
+
 	public void createResultSet() throws SQLException, IOException
 	{
 		ResultSet resultSet = new ResultSetImpl();
