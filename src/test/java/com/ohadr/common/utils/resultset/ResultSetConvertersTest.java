@@ -10,15 +10,18 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.Test;
+import junit.framework.Assert;
 
 public class ResultSetConvertersTest
 {
 	@Test
 	public void testcreateResultSet() throws SQLException, IOException
 	{
+		final String expectedResult = "{\"Balance_USD\":13.91,\"SIGNUPDATE\":2017-10-26,\"CASINONAME\":\"WHPoker\",\"Seniority\":1696}\n{\"Balance_USD\":13.91,\"SIGNUPDATE\":2017-10-26,\"CASINONAME\":\"WHPoker\",\"Seniority\":1696}\n";
 		ResultSet resultSet = new ResultSetImpl();
 		
-		for(int i=0; i < 50; ++i)
+		//prepare the result-set
+		for(int i=0; i < 2; ++i)
 		{
 			Date signupDate = new Date( System.currentTimeMillis() );
 			resultSet.moveToInsertRow();
@@ -34,8 +37,10 @@ public class ResultSetConvertersTest
 
 		StringWriter stringWriter = new StringWriter();
 
+		//test the converter:
 		ResultSetConverters.writeResultSetToWriter(resultSet, stringWriter);
 		stringWriter.close();
+		Assert.assertEquals(expectedResult, stringWriter.toString());
 	}
 
 //	@Test
@@ -44,6 +49,7 @@ public class ResultSetConvertersTest
 		ResultSet resultSet = new ResultSetImpl();
 		
 		for(int i=0; i < 500000; ++i)
+		//prepare the result-set
 		{
 			Date signupDate = new Date( System.currentTimeMillis() );
 			Date lastLoginDate = new Date( System.currentTimeMillis() );
