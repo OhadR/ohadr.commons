@@ -48,8 +48,8 @@ public class ResultSetConvertersTest
 	{
 		ResultSet resultSet = new ResultSetImpl();
 		
+		//prepare the result-set, 500K lines and write to a file (PrintWriter)
 		for(int i=0; i < 500000; ++i)
-		//prepare the result-set
 		{
 			Date signupDate = new Date( System.currentTimeMillis() );
 			Date lastLoginDate = new Date( System.currentTimeMillis() );
