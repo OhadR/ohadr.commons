@@ -4,10 +4,12 @@ ohadr.commons   [![Build Status](https://travis-ci.org/OhadR/ohadr.commons.svg?b
 
 ## `JsonUtils`
 
-public abstract class JsonUtils
-	public static <T> String convertToJson(T objectToConvert)
-	public static <T> T convertFromJson(String json, Class<T> typeParameterClass)
-	public static String convertResultSetToJson(ResultSet resultSet) throws SQLException
+    public abstract class JsonUtils
+    {
+      public static <T> String convertToJson(T objectToConvert)
+      public static <T> T convertFromJson(String json, Class<T> typeParameterClass)
+      public static String convertResultSetToJson(ResultSet resultSet) throws SQLException
+    }
 
 
 ## c3p0 utils
@@ -34,6 +36,8 @@ An implementation for ResultSet, for most updates() and gets(). If something is 
 	
 	class ResultSetMetaDataImpl extends AbstractResultSetMetaData
 	
+An implementation for ResultSetMetaData. Used by `ResultSetImpl`.
+
 	
 	ResultSetConverters
 	
