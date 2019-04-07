@@ -17,13 +17,18 @@ public class ResultSetConvertersTest
 	@Test
 	public void testcreateResultSet() throws SQLException, IOException
 	{
-		final String expectedResult = "{\"Balance_USD\":13.91,\"SIGNUPDATE\":2017-10-26,\"CASINONAME\":\"WHPoker\",\"Seniority\":1696}\n{\"Balance_USD\":13.91,\"SIGNUPDATE\":2017-10-26,\"CASINONAME\":\"WHPoker\",\"Seniority\":1696}\n";
+		Date signupDate = new Date( System.currentTimeMillis() );
+		final String expectedResult = "{\"Balance_USD\":13.91,\"SIGNUPDATE\":"
+//				+ "2017-10-26"
+				+ signupDate
+				+ ",\"CASINONAME\":\"WHPoker\",\"Seniority\":1696}\n{\"Balance_USD\":13.91,\"SIGNUPDATE\":"
+				+ signupDate
+				+ ",\"CASINONAME\":\"WHPoker\",\"Seniority\":1696}\n";
 		ResultSet resultSet = new ResultSetImpl();
 		
 		//prepare the result-set
 		for(int i=0; i < 2; ++i)
 		{
-			Date signupDate = new Date( System.currentTimeMillis() );
 			resultSet.moveToInsertRow();
 			
 			resultSet.updateString("CASINONAME", "WHPoker");
